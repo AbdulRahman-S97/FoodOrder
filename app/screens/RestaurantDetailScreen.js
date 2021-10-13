@@ -118,9 +118,9 @@ export const RestaurantDetailScreen = () => {
 
   return (
     <Container>
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <FlatList
-          style={{ flex: 1}}
+          style={{ flex: 1 }}
           showsVerticalScrollIndicator={false}
           data={[1, 2, 3, 4, 5, 6, 7, 8]}
           renderItem={_renderMenuList}
@@ -128,11 +128,43 @@ export const RestaurantDetailScreen = () => {
           ListHeaderComponent={_renderHeader.bind(this)}
           //   ListFooterComponent={}
         />
+        <View
+          style={{
+            height: 60,
+            backgroundColor: "rgba(10,30,45,1)",
+            alignItems: "center",
+            padding: 15,
+          }}
+        >
+          <TouchableOpacity
+            style={{ flexDirection: "row", alignSelf: "center" }}
+          >
+            <Image
+              style={{
+                height: 25,
+                width: 25,
+                tintColor: "white",
+                marginHorizontal: 10,
+              }}
+              source={require("../assets/images/shopping-cart.png")}
+            />
+            <Text
+              style={{
+                color: "white",
+                fontSize: Constants.FONT_SIZE.M,
+                alignSelf: "center",
+                fontWeight: '500'
+              }}
+            >
+              VIEW CART (5 ITEMS)
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
       <View
         style={{
           position: "absolute",
-          bottom: 0,
+          bottom: 80,
           alignSelf: "center",
           backgroundColor: "rgba(234,185,133,1)",
           flexDirection: "row",
