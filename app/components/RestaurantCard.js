@@ -1,20 +1,20 @@
+/*************************************************
+ * FoodOrderApp
+ * @exports
+ * @function RestaurantCard.js
+ * Created by Abdul Rahman on 13/10/2021
+ *************************************************/
+
+ "use strict";
+
 import React, { useState, useEffect } from "react";
 import CardView from "react-native-cardview";
 import Constants from "../utils/Constants";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Dimensions,
-  TouchableOpacity,
-  Image,
-  Platform,
-} from "react-native";
+import { View, Text, Image } from "react-native";
 
-export default function RestaurantCard(props) {
-  useEffect(() => {
-    console.log("---------->", props);
-  });
+const areEqual = (prevProps, nextProps) => true;
+
+const RestaurantCard = React.memo((props) => {
   return (
     <View>
       <CardView
@@ -96,4 +96,6 @@ export default function RestaurantCard(props) {
       </CardView>
     </View>
   );
-}
+}, areEqual);
+
+export default RestaurantCard;

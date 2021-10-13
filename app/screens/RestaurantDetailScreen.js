@@ -1,5 +1,13 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+/*************************************************
+ * FoodOrderApp
+ * @exports
+ * @function RestaurantDetailScreen.js
+ * Created by Abdul Rahman on 13/10/2021
+ *************************************************/
+
+"use strict";
+
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import {
   View,
@@ -17,6 +25,7 @@ import { BlurView } from "@react-native-community/blur";
 import RestaurantCard from "../components/RestaurantCard";
 import Constants from "../utils/Constants";
 import MenuListItem from "../components/MenuListItem";
+import { updateCount } from "../actions/CartActions";
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
@@ -26,9 +35,16 @@ const resObj = {
   timings: "09:00 AM - 06:00 PM",
   phoneNo: 9854562142,
 };
+
 const extractKey = ({ id }) => id;
 
-export const RestaurantDetailScreen = () => {
+const RestaurantDetailScreen = ({
+  navigation,
+  menuArray,
+  cartCount,
+  cartArray,
+  ...props
+}) => {
   const [restaurantDetail, setRestaurantDetail] = useState(resObj);
 
   const _renderHeaderTab = () => {
@@ -86,8 +102,20 @@ export const RestaurantDetailScreen = () => {
     );
   };
 
-  const _renderMenuList = () => {
-    return <MenuListItem></MenuListItem>;
+  const _onAddClicked = (value, index, type, id) => {
+    props.updateCount(value, index, type, id);
+  };
+
+  const _renderMenuList = ({ item, index }) => {
+    return (
+      <MenuListItem
+        item={item}
+        index={index}
+        addItem={(value, indx, type, id) => {
+          _onAddClicked(value, indx, type, id);
+        }}
+      />
+    );
   };
 
   const _renderHeader = () => {
@@ -122,7 +150,7 @@ export const RestaurantDetailScreen = () => {
         <FlatList
           style={{ flex: 1 }}
           showsVerticalScrollIndicator={false}
-          data={[1, 2, 3, 4, 5, 6, 7, 8]}
+          data={menuArray}
           renderItem={_renderMenuList}
           keyExtractor={extractKey}
           ListHeaderComponent={_renderHeader.bind(this)}
@@ -138,6 +166,9 @@ export const RestaurantDetailScreen = () => {
         >
           <TouchableOpacity
             style={{ flexDirection: "row", alignSelf: "center" }}
+            onPress={() => {
+              navigation.navigate("Cart", {});
+            }}
           >
             <Image
               style={{
@@ -153,10 +184,12 @@ export const RestaurantDetailScreen = () => {
                 color: "white",
                 fontSize: Constants.FONT_SIZE.M,
                 alignSelf: "center",
-                fontWeight: '500'
+                fontWeight: "500",
               }}
             >
-              VIEW CART (5 ITEMS)
+              {cartCount > 0
+                ? "VIEW CART " + cartCount + " ITEMS"
+                : "VIEW CART"}
             </Text>
           </TouchableOpacity>
         </View>
@@ -189,9 +222,20 @@ export const RestaurantDetailScreen = () => {
   );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => {
+  const {
+    cartState: { menuArray, cartCount, cartArray },
+  } = state;
 
-const mapDispatchToProps = {};
+  return {
+    menuArray,
+    cartCount,
+    cartArray,
+  };
+};
+const mapDispatchToProps = {
+  updateCount: updateCount,
+};
 
 export default connect(
   mapStateToProps,

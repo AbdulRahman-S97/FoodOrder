@@ -357,6 +357,8 @@ PODS:
   - RNScreens (3.8.0):
     - React-Core
     - React-RCTImage
+  - RNSnackbar (2.4.0):
+    - React-Core
   - SDWebImage (5.12.0):
     - SDWebImage/Core (= 5.12.0)
   - SDWebImage/Core (5.12.0)
@@ -424,6 +426,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - RNFastImage (from `../node_modules/react-native-fast-image`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNSnackbar (from `../node_modules/react-native-snackbar`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -513,6 +516,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-fast-image"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSnackbar:
+    :path: "../node_modules/react-native-snackbar"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -564,11 +569,12 @@ SPEC CHECKSUMS:
   ReactCommon: eb059748e842a1a86025ebbd4ac9d99e74492f88
   RNFastImage: d4870d58f5936111c56218dbd7fcfc18e65b58ff
   RNScreens: 6e1ea5787989f92b0671049b808aef64fa1ef98c
+  RNSnackbar: b6cbf294923b8d6c6056592bca87527c81a0130b
   SDWebImage: 4ea20cca2986adc5aacde07aa686742fd4c67a37
   SDWebImageWebPCoder: d0dac55073088d24b2ac1b191a71a8f8d0adac21
   Yoga: c11abbf5809216c91fcd62f5571078b83d9b6720
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: ef4d70e80b82f9f5041e4a63bdad4f87b806a63b
+PODFILE CHECKSUM: 9345d5c71322c672f0cec248074c9cc0db686547
 
 COCOAPODS: 1.11.2
